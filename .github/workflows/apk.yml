@@ -1,0 +1,30 @@
+name: 构建APK
+on:
+  push:
+    paths: ["app/**", ".github/workflows/apk.yml"]
+  workflow_dispatch:
+permissions:
+  contents: write
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-java@v4
+        with: { distribution: temurin, java-version: "17" }
+      - uses: subosito/flutter-action@v2
+        with: { channel: stable }
+      - name: 生成平台工程并构建
+        working-directory: app
+        run: |
+          flutter create --platforms=android --project-name novel_rank --org com.novelrank .
+          sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/>\n    <application#' android/app/src/main/AndroidManifest.xml
+          sed -i 's#android:label="novel_rank"#android:label="小说榜单"#' android/app/src/main/AndroidManifest.xml
+          flutter pub get
+          flutter build apk --release
+      - uses: softprops/action-gh-release@v2
+        with:
+          tag_name: apk-${{ github.run_number }}
+          name: 小说榜单 APK #${{ github.run_number }}
+          files: app/build/app/outputs/flutter-apk/app-release.apk
+          make_latest: true
