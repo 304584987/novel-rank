@@ -1,5 +1,5 @@
 {
- "updated": "2026-10-30 00:51 (北京时间)",
+ "updated": "2026-10-30 00:57 (北京时间)",
  "sites": [
   {
    "key": "qidian",
@@ -2051,28 +2051,385 @@
    "lists": [
     {
      "name": "男频·都市脑洞·阅读榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "系统想害我，我选择上交国家",
+       "author": null,
+       "intro": "【已签实体出版】【非常规上交文，聚焦主角人物成长与国家双向奔赴】好消息！有系统！坏消息！系统貌似出b...",
+       "url": "https://fanqienovel.com/page/7650499837250522137",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "高考出分前一晚，兑换北大录取书",
+       "author": null,
+       "intro": "高考出分前夜，季白刷到一条帖子：【给你十块钱，你怎么花？】1、回到十年前（6元）2、北京一套房（2元...",
+       "url": "https://fanqienovel.com/page/7650159645603941438",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "直播我和徐妙云，老朱全家破防了",
+       "author": null,
+       "intro": "苏明醒来时，旁边正躺着一位古装少女，自称大明魏国公长女，徐妙云。与此同时，天幕在大明洪武八年展开，现...",
+       "url": "https://fanqienovel.com/page/7658515148906187800",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "骗子闯入娱乐圈",
+       "author": null,
+       "intro": "【穿越】【重生】【无女主】【无系统】【文娱】考虑一些逻辑的问题会有一丢丢慢热，恳求读者大老爷们多点耐...",
+       "url": "https://fanqienovel.com/page/7664853688728423486",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "从小学三年级开始的完美人生",
+       "author": null,
+       "intro": "作为理科生的方洛重生到小学三年级，在别人还在烦恼背诵加减乘除时，已经可以口解一次方程而被同学膜拜。《...",
+       "url": "https://fanqienovel.com/page/7680442123375610904",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "实习教出金牌班，家长要换班主任",
+       "author": null,
+       "intro": "【脑洞+系统+不憋屈+buff+卡牌+词条+爽文】陆谦毕业后，成为高二七班的实习班主任。入职当天，觉...",
+       "url": "https://fanqienovel.com/page/7649016386907278361",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "我就写个网文，真没想镇压文坛啊",
+       "author": null,
+       "intro": "【平行世界】【文抄】【多马甲】江枫穿越到文化娱乐都极度匮乏的蓝星龙国，意外觉醒前世记忆，成为行走的文...",
+       "url": "https://fanqienovel.com/page/7660241233977035800",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "直播见证神话：从鳌太线走蛟开始",
+       "author": null,
+       "intro": "    【直播+神话+探险+轻松搞笑+整活小王子……】    985土木毕业即失业，叶开一怒之下投身...",
+       "url": "https://fanqienovel.com/page/7677199681213975576",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "1955，归国带飞国家工业",
+       "author": null,
+       "intro": "【单女主】【科技强国】【军工强国】刚开分，后面会涨~前世的冶金专家胎穿回到了过去。陈景行表示他只想好...",
+       "url": "https://fanqienovel.com/page/7684272279282256958",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "男频·都市脑洞·新书榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "穿成警察，满城霸总排队来送业绩",
+       "author": null,
+       "intro": "女频复苏，霸总降世，人间如狱。连续考公失败五年的苏羽意外来到女频文高发区的世界。可没想到穿越后竟还是...",
+       "url": "https://fanqienovel.com/page/7676887467571547198",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "我在美国当上帝",
+       "author": null,
+       "intro": "东大小伙到达美利坚旅游，看到了这个世界满目疮痍的另一面。满大街的年轻站街拉丁女、身患糖尿病却营养不良...",
+       "url": "https://fanqienovel.com/page/7680484162519714878",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "入学第一天：我娶了丰腴美人教授",
+       "author": null,
+       "intro": "【单女主+系统+高冷女教授+马甲装逼+甜宠】入学第一天，林凡被经管系最年轻的女神教授楚晚宁拉进民政局...",
+       "url": "https://fanqienovel.com/page/7693001929282047038",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "我伪装成人类文明，拯救诸天万界",
+       "author": null,
+       "intro": "又名：人类灭亡后，我成为了人类文明。公元23世纪，人类文明因无休止的仇恨、内战，与冲突，而彻底走向了...",
+       "url": "https://fanqienovel.com/page/7670487037530606654",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "绝症留洋归乡？举国哭求我别死！",
+       "author": null,
+       "intro": "【评分刚出+留洋归乡+报国+高智商】陆远穿越建国初期，好消息：是个留洋归国高材生。　　坏消息：濒临死...",
+       "url": "https://fanqienovel.com/page/7685216473496685630",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "弹幕说，我未婚妻要嫁给她助理！",
+       "author": null,
+       "intro": "【短剧世界】+【追夫火葬场】+【超多女主】+【弹幕提醒】江城机场。叶川和柳清漪神情相拥。柳清漪倚偎在...",
+       "url": "https://fanqienovel.com/page/7691611973443669016",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "开局T病毒，全民变异，财阀慌了",
+       "author": null,
+       "intro": "【幕后流+群像+超凡+财阀+生物改造+反乌托邦+实力至上】蓝星，财阀至上，从出生的那一刻起，人们的一...",
+       "url": "https://fanqienovel.com/page/7522908127813962776",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "让你制作奢侈品，你做龙泉印泥？",
+       "author": null,
+       "intro": "以极致匠心，雕琢世间奢华，起初徐淮参加这档大厂制作的奢侈品手工节目《顶奢手作》只是为了赚点儿生活费，...",
+       "url": "https://fanqienovel.com/page/7694900583697763352",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "大一开学，我的消费额度每天翻倍",
+       "author": null,
+       "intro": "十八岁，大一新生。报道前一晚，李霖绑定神豪消费系统。【今日消费额度：1000元。】【每日凌晨自动翻倍...",
+       "url": "https://fanqienovel.com/page/7692879857708960793",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "联邦：从贫困镇开始进步",
+       "author": null,
+       "intro": "（人脉+基层扶贫起步+一路顺风）孤儿院出身的黎明，在校园内却莫名遭到他人的羞辱。一场冲突落幕，自己却...",
+       "url": "https://fanqienovel.com/page/7682232276435881022",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "男频·玄幻脑洞·阅读榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "这个游戏不对劲，我挖矿成神！",
+       "author": null,
+       "intro": "【神域降临全球】职业打金人杨凌只是想在「神域」这款游戏里放松放松，结果却发现这里环境恶劣，无法离线。...",
+       "url": "https://fanqienovel.com/page/7590221243043826712",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "文字武侠：开局破庙夜会帮主夫人",
+       "author": null,
+       "intro": "【文字游戏】【影响现实】【高武】【无女主多女人】陈玄无意之间接触了一款文字类的‘游戏’《武道》，他惊...",
+       "url": "https://fanqienovel.com/page/7636702239288986649",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "开局长生万古，苟到天荒地老",
+       "author": null,
+       "intro": "【已出版实体书】【非爽文+平淡日常+轻松诙谐+无女主+无刀子+苟王】入坑谨慎。一本以长生者视角跨越几...",
+       "url": "https://fanqienovel.com/page/7147596144942517284",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "系统赋我长生，我熬死了所有人",
+       "author": null,
+       "intro": "以生命之外的身份，去观察时间长河中修仙者的红尘情仇。　　从不算繁华的小镇中走出，踏入了精彩纷呈修仙世...",
+       "url": "https://fanqienovel.com/page/7228940788351110182",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "封神：开局反出西岐，我死守渑池",
+       "author": null,
+       "intro": "【封神+反西岐+杀伐果断+系统+截教】沈威穿越封神世界，机缘巧合拜姜子牙为师，从西岐一介无名小卒，一...",
+       "url": "https://fanqienovel.com/page/7679083199242193982",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "全球修仙：只有我商城降价十亿倍",
+       "author": null,
+       "intro": "【绝对不压+爽】一觉醒来，全球人类绑定玩家模版，登录进一个真实的修真世界。有人开局身怀异宝，修行快人...",
+       "url": "https://fanqienovel.com/page/7685692505861393470",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "武侠网游，开局三个神级词条",
+       "author": null,
+       "intro": "【纯手打】【玄幻脑洞】【武侠】【影响现实】【评分刚出】李青山穿越了。觉醒的金手指是，玩什么游戏都可以...",
+       "url": "https://fanqienovel.com/page/7672596897554517054",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "一年抽取一词条，模拟的也可以？",
+       "author": null,
+       "intro": "【词条抽取+模拟器+全部继承+仙武】（漫剧已上线）陈奕穿越武道世界，获得了一个一年抽一个词条的系统。...",
+       "url": "https://fanqienovel.com/page/7583949514948496409",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "提前登陆游戏世界，开局联姻女帝",
+       "author": null,
+       "intro": "【提前穿越+权谋+王朝争霸+魅魔+诸天融合】本书又叫【我，女帝未婚夫，幕后最强反派】一觉醒来，夏辰提...",
+       "url": "https://fanqienovel.com/page/7444482186822044734",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "男频·玄幻脑洞·新书榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "全班同学穿越，我开局拜菩提祖师",
+       "author": null,
+       "intro": "静默赤道带降临，全球班级接连消失，末日恐慌蔓延。高三四班的林墨，一个双腿瘫痪、被全校用异样目光看待的...",
+       "url": "https://fanqienovel.com/page/7693170346114944062",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "开局最弱大帝，禁区至尊被逼疯了",
+       "author": null,
+       "intro": "李逍遥，人族凡体。　　全靠系统死砸资源才硬堆成帝，也是古往今来水分最大、战力垫底的“最弱大帝”。　　...",
+       "url": "https://fanqienovel.com/page/7682570626485193752",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "狗管，还说你不会武功",
+       "author": null,
+       "intro": "（朝堂江湖+侠以武犯忌+逗比文！！）现代人黄俊生穿越到古代高武世界一名刚刚考中进士也叫黄俊生的年轻人...",
+       "url": "https://fanqienovel.com/page/7688515801736825918",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "氪金就变强，开局借遍高利贷！",
+       "author": null,
+       "intro": "【本书又名：人族大帝，从外城借高利贷氪金加点开始！】【斩妖除魔+加点+爽文+杀伐果断+不圣母】陆渊穿...",
+       "url": "https://fanqienovel.com/page/7674626304058068030",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "主角道路太卷，我弯道超车成反派",
+       "author": null,
+       "intro": "《贱萌+反派+爽文+腹黑+轻松+老六+幕后+无节操+非无敌文》别人穿越，觉醒系统，天选之子，争抢机缘...",
+       "url": "https://fanqienovel.com/page/7686781902853770302",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "师尊，您怎么成了我的契约兽？",
+       "author": null,
+       "intro": "【多女主】【兽娘】【后宫】【冲师逆徒】【系统】【轻松搞笑】师尊寿宴当天，各宗宾客齐聚前殿，等着拜见长...",
+       "url": "https://fanqienovel.com/page/7690550038811905048",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "男频·东方仙侠·阅读榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "凡骨",
+       "author": null,
+       "intro": "世间灵骨，共分四品。一品，天灵骨。二品，金灵骨。三品，玄灵骨。四品，白灵骨。余者，皆为凡骨，无缘修行...",
+       "url": "https://fanqienovel.com/page/7077516958534470656",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "聚宝仙盆",
+       "author": null,
+       "intro": "【凡人流】【无系统】，太虚门杂役弟子【贺平生】机缘巧合之下获得了一个【聚宝盆】，从此走上了修仙道路。...",
+       "url": "https://fanqienovel.com/page/7445188900496083992",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "从金丹仙族开始的老祖之路！",
+       "author": null,
+       "intro": "练气筑基起步家族的太多，想写一部关于金丹家族开始中兴的小说。简介乏力～感兴趣的可以进来看五十章～【家...",
+       "url": "https://fanqienovel.com/page/7624183298310278168",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "星路仙踪",
+       "author": null,
+       "intro": " 现代世界的蓝星，出现异界通道。 王禹作为首批梦入修仙异界之人，为了生存，懵懵中走上了修仙道路！  ...",
+       "url": "https://fanqienovel.com/page/7425597358123011134",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "家有仙妻不对劲，她也是穿越者！",
+       "author": null,
+       "intro": "（评分刚出会涨）【穿越者夫妻修仙+无系统但有挂】林鹤懵了，作为一名蓝星人，在连续熬夜疯狂加班后，终于...",
+       "url": "https://fanqienovel.com/page/7663411519622745112",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "九霄通天塔",
+       "author": null,
+       "intro": "【大帝转世】【重生】【传统玄幻】千万字老书保证，热血玄幻，爽到爆！！永恒仙尊，仙界至尊之一，遭挚友背...",
+       "url": "https://fanqienovel.com/page/7581791640260447257",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "刚进宗门，就睡出个绝美师尊老婆",
+       "author": null,
+       "intro": "【漫剧出来了（仙霄圣途），喜欢的可以支持一下）爽文+无敌+主角腹黑+扮猪吃虎】林辰，炼气二层突破二十...",
+       "url": "https://fanqienovel.com/page/7662410067341233177",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "符道之祖",
+       "author": null,
+       "intro": "【凡人流，无系统。】放牛娃徐长寿，因救绿仙宗杂役弟子被带入修仙界，后觉醒血脉玉符，获得符道传承。从画...",
+       "url": "https://fanqienovel.com/page/7364671902251502616",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "百岁修仙：从觉醒天灵根开始",
+       "author": null,
+       "intro": "穿越修真界，李青山表示很难绷，十八岁那年灵根检测，只是一个没有灵根的凡人，无奈龟缩小山村，结婚生子，...",
+       "url": "https://fanqienovel.com/page/7540122908304100414",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "无敌江湖后，我隐退于世",
+       "author": null,
+       "intro": "【不吃牛肉】【无敌】【想干嘛就干嘛】【不压战力】【搞笑】少年知意走四方，生死江湖梦一场。不知哪位诗人...",
+       "url": "https://fanqienovel.com/page/7634108430923336766",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "男频·东方仙侠·新书榜",
@@ -2248,8 +2605,81 @@
     },
     {
      "name": "男频·历史脑洞·新书榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "改变历史就变强：开局对掏汉武帝",
+       "author": null,
+       "intro": "穿越到了一个叫大乾的古代王朝，成为一个农民之子的刘羽觉醒了一个神奇的系统，可以回到一个个历史节点上，...",
+       "url": "https://fanqienovel.com/page/7687907303361629209",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "天幕：千古第一才女的现代生活",
+       "author": null,
+       "intro": "现代青年赵齐书在家上个厕所的功夫，家里突然出现个千古第一才女李清照。在赵齐书帮助李清照融入现代生活的...",
+       "url": "https://fanqienovel.com/page/7692626661904239678",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "边军悍卒，绝色罪女天天求暖床",
+       "author": null,
+       "intro": "【历史穿越】+【争霸权谋】+【暴兵基建】+【杀伐果断】+【反套路】穿成边关土木堡十五岁纨绔，开局就撞...",
+       "url": "https://fanqienovel.com/page/7687819352099261465",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "都亡国十六年，你们才找到本太子",
+       "author": null,
+       "intro": "大康亡国十六年，末代太子龙林空隐姓埋名，成为大运朝一个小捕快。复国？都亡国十六年了，还复个屁。娶妻生...",
+       "url": "https://fanqienovel.com/page/7680477818718784574",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "大秦：砸死徐福后，我带始皇修仙",
+       "author": null,
+       "intro": "秦始皇三十七年，第五次东巡前夕。秦龙穿越而来，从天而降，正好砸死了正在大殿申请出海求仙的徐福。【叮！...",
+       "url": "https://fanqienovel.com/page/7680528964397304894",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "红楼贾赦：我的金手指是山海经",
+       "author": null,
+       "intro": "“现在站在你面前的是，大赵开国荣国公嫡长孙、荣国公贾代善嫡长子、魏王、太师、参军国事兼太子太师、上柱...",
+       "url": "https://fanqienovel.com/page/7689455594889038910",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "大明第一国舅，开局治好朱雄英！",
+       "author": null,
+       "intro": "马良，一个带着系统穿越而来的医生，被锦衣卫带进皇宫，救下了皇太孙朱雄英！就在马良功成身退的时候，锦衣...",
+       "url": "https://fanqienovel.com/page/7681266971039501336",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "开局六岁选宗卫，我靠系统争皇位",
+       "author": null,
+       "intro": "穿越成大魏五皇子赵景誉，六岁入宗正寺选宗卫。铁笼斗烈犬，收凌霜等十名死士；入武库选功法，系统看破优劣...",
+       "url": "https://fanqienovel.com/page/7685053737722727448",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "大明国舅：开局赐婚徐妙云",
+       "author": null,
+       "intro": "评分刚出后面会涨【轻松搞笑】【恋爱日常】【系统】【团宠】【扮猪吃虎】　　洪武三年，马皇后失散多年的亲...",
+       "url": "https://fanqienovel.com/page/7684977785206475801",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "女频·现言脑洞·阅读榜",
@@ -2339,13 +2769,175 @@
     },
     {
      "name": "女频·现言脑洞·新书榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "男团内部消化，可我是女扮男装啊",
+       "author": null,
+       "intro": "    【弹幕+娱乐圈+弯掰直+爽文+多男主+男全洁+打脸】    【女宝承重墙成精，不吃一点压力】...",
+       "url": "https://fanqienovel.com/page/7682458000279227416",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "C级向导？全星际哨兵都不够她治",
+       "author": null,
+       "intro": "（这本书看着不烧心）【1vN+男洁+别管女洁不洁+系统+星际兽世+哨向+轻松搞笑】急诊医生一朝穿越，...",
+       "url": "https://fanqienovel.com/page/7660811678094724120",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "全男，我也不想穿成洋娃娃啊",
+       "author": null,
+       "intro": "天啊，这里只有我一个女人吗？未来世界女性灭绝。男性们只能对着一点微弱的影像资料，一些古老的照片，一段...",
+       "url": "https://fanqienovel.com/page/7684544776481279038",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "招惹的哨兵怎么都是疯批反派",
+       "author": null,
+       "intro": "（评分刚出 之后会涨）【万人迷+非传统向哨+修罗场+救赎向+训狗+男全洁】简沅穿书了。这是个向导哨兵...",
+       "url": "https://fanqienovel.com/page/7684152494443727934",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "穿成炮灰女配财阀掌权人俯首称臣",
+       "author": null,
+       "intro": "【顶级财阀 +  纯欲大美人 + 勾引上位】傲慢冷厉第一财阀大贵族 × 纯欲娇软女配大美人小花仙绑定...",
+       "url": "https://fanqienovel.com/page/7690303796873808920",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "老实女鬼被偏执阴郁男缠上后",
+       "author": null,
+       "intro": "心软老实女×少年爹系阴郁男【治愈救赎向小甜饼/万一是柏拉图呢】禾禧是只野鬼。某天收到通知，再不投胎就...",
+       "url": "https://fanqienovel.com/page/7663919452458601534",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "宝宝，说好的囚禁我，那他是谁？",
+       "author": null,
+       "intro": "刚出分，会涨！！【娇软怂人妹宝&傲娇纨绔富二代】【圈养+1v1+双洁+男主自我攻略+认错人+同居暧昧...",
+       "url": "https://fanqienovel.com/page/7684494898552114200",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "雌主大人，精神体不能这么玩啊",
+       "author": null,
+       "intro": "【星际兽世｜恶性雄竞｜男全洁｜花系精神体塑｜宠夫｜1vN】末世极寒冻死的云霁，不知怎么就来到了星际时...",
+       "url": "https://fanqienovel.com/page/7680470489919147033",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "住手，你们不要再打了【无限】",
+       "author": null,
+       "intro": "评分刚出会涨！［无限流］［直播间］［网恋］［颜值爆表］［修罗场］［吸引力MAX］［男嘉宾身心全洁］爽...",
+       "url": "https://fanqienovel.com/page/7618957720548297753",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "娇气美人在修罗场被坏男人哄",
+       "author": null,
+       "intro": "万人迷➕修罗场➕雄竞➕娇软钓系➕男全洁虞姣穿成书中的炮灰假千金时，原主已经把所有的妖都作完了——折辱...",
+       "url": "https://fanqienovel.com/page/7683711986412031038",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "女频·古言脑洞·阅读榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "爹别贪了！我哥爬龙床我散财爆红",
+       "author": null,
+       "intro": "正文完结，哥哥cp番外连载中。【迪化团宠+兄妹绑错系统+逆向致富+女主无cp】【哥哥有知己挚友+单独...",
+       "url": "https://fanqienovel.com/page/7624055630587759640",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "脑子一热，强吻了我哥的同窗好友",
+       "author": null,
+       "intro": "【一见钟情+生理性喜欢+系统助攻】系统搞错了人，绑定谢宜歌的第一天就触发强吻任务。她脑子一热，当众抢...",
+       "url": "https://fanqienovel.com/page/7640326222639008792",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "枝上蘅",
+       "author": null,
+       "intro": "避雷:先魂穿大结局身穿/系统有强制任务与惩罚（扣体力值）【钓系公主 × 清冷国师】【双洁· HE·他...",
+       "url": "https://fanqienovel.com/page/7655245523447729177",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "攻略苗疆少主",
+       "author": null,
+       "intro": "楚禾穿书了。【那个反派会杀了男主，弄残女主，最后再厌世自杀，这个世界即将崩溃，而你的任务是拯救这个世...",
+       "url": "https://fanqienovel.com/page/7515457905320004632",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "太子崽崽今天登基了吗？",
+       "author": null,
+       "intro": "养崽+气运+无cp，避雷去看第一章作话，简介限制字数。前世武君稷流落民间十六年，被周帝找回册封为太子...",
+       "url": "https://fanqienovel.com/page/7545144499408751678",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "玄门神算卦太灵，火爆全京城！",
+       "author": null,
+       "intro": "【无cp+玄学+算命+爽文+微马甲+捉鬼+轻松无虐~】　　萧家云灼自幼被弃，亲人找上门，果断回京做个...",
+       "url": "https://fanqienovel.com/page/7268528075988536378",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "沈世子，您真是做男做女都精彩啊",
+       "author": null,
+       "intro": "【1vN男全洁+雄竞+掉马+抽象】【非权谋文】【温润端方小皇帝+阴鸷反差摄政王+孤高清冷左相+聪慧狐...",
+       "url": "https://fanqienovel.com/page/7611934119068437528",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "满门炮灰读我心后，全家造反了",
+       "author": null,
+       "intro": "【实体书《揽明珠2》10月17日晚19.30预售】【读心术+系统+团宠+穿书+扮猪吃虎】乔娇娇上辈子...",
+       "url": "https://fanqienovel.com/page/7266411377009364008",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "娇软福妾，胎胎多宝，全府宠上天",
+       "author": null,
+       "intro": "【 穿越+系统+宫斗宅斗+经商+科研发明+萌宝+男强女强+团宠】（非双洁，遇女主后独宠。）十八线小演...",
+       "url": "https://fanqienovel.com/page/7613055995052313624",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "手拿名臣系统，我在古代女扮男装",
+       "author": null,
+       "intro": "许玥穿书了。成为科举文里母亲早亡，没有兄弟，孤苦无依，家中不管只能尴尬寄住在男主家的小白花表妹。许玥...",
+       "url": "https://fanqienovel.com/page/7225592747904732192",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "女频·古言脑洞·新书榜",
@@ -2400,18 +2992,18 @@
       },
       {
        "rank": 7,
-       "title": "小官妻靠每日情报养成权臣",
-       "author": null,
-       "intro": "（评分刚开，还会涨！）【穿越+系统+宠夫+甜宠+双洁+日常】大周朝堂腐败，贪官横行，百姓遭殃。拥有每...",
-       "url": "https://fanqienovel.com/page/7677644288481561625",
-       "core": null
-      },
-      {
-       "rank": 8,
        "title": "万人嫌小可怜重生成皇帝亲生的崽",
        "author": null,
        "intro": "秦宝安是侯府的真少爷。可侯府上下都偏袒假少爷，嫌弃他。假少爷落水，大哥不由分说给他一巴掌，质问他为何...",
        "url": "https://fanqienovel.com/page/7667970171918634008",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "小官妻靠每日情报养成权臣",
+       "author": null,
+       "intro": "（评分刚开，还会涨！）【穿越+系统+宠夫+甜宠+双洁+日常】大周朝堂腐败，贪官横行，百姓遭殃。拥有每...",
+       "url": "https://fanqienovel.com/page/7677644288481561625",
        "core": null
       },
       {
@@ -2435,8 +3027,89 @@
     },
     {
      "name": "女频·年代·阅读榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "撕毁婚约后，年上首长失控被亲哭",
+       "author": null,
+       "intro": "【重生军婚+国画＋先婚后爱+明艳清冷白月光vs运筹帷幄野心家】孟寄雪长得甚美，桃腮杏眼，玉骨冰肌。女...",
+       "url": "https://fanqienovel.com/page/7579885042294328345",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "四个孩子非亲生，姐宝男杀疯了",
+       "author": null,
+       "intro": "【评分刚开，后期会涨】【六个姐姐+空间+虐渣+致富】张七宝当了一辈子的“绿毛龟”。一直到死的那一刻，...",
+       "url": "https://fanqienovel.com/page/7676775722773384217",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "和闺蜜穿七零，带着婆婆一起离",
+       "author": null,
+       "intro": "【穿越+甜宠+日常+军婚+轻松】双女主+双男主不过是到海边渡个假，一个大浪就把夏小柒和乔然拍到了一九...",
+       "url": "https://fanqienovel.com/page/7409147857942367294",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "七零：小狐狸崽在线找爹",
+       "author": null,
+       "intro": "末法时代灵气枯竭，上古九尾狐涂山瑶奄奄一息。四岁的神兽幼崽小宝攥紧拳头，拖着病弱吐血的老妈不远千里找...",
+       "url": "https://fanqienovel.com/page/7614709148751498302",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "投河被救，醒来后发现怀上了",
+       "author": null,
+       "intro": "【年代+双洁+萌宝+异能】在一个伸手不见五指的晚上，宋璃因感情不顺跳河，被一个男人救上岸后，两人阴差...",
+       "url": "https://fanqienovel.com/page/7618152245011434521",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "替嫁后，糙汉男人将她宠上天",
+       "author": null,
+       "intro": "【年代+乡村+家长里短+糙汉护妻+发家致富+打脸】陈玉梅在成亲前三天，跟前男友私奔。陈家没办法，只好...",
+       "url": "https://fanqienovel.com/page/7596021152615517209",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "假千金还在演，我一心搞科研",
+       "author": null,
+       "intro": "【架空＋重生＋年代＋学霸＋真假千金＋科研兴国】重生回八十年代，林之遥看着镜子里与军区首长夫人极为相似...",
+       "url": "https://fanqienovel.com/page/7547672257322028056",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "嫁糙汉！摆地摊！八零媳妇赚翻盘",
+       "author": null,
+       "intro": "[穿越+替嫁+年代+先婚后爱+创业暴富+打脸+追妻火葬场]沈清禾穿越了，亲奶奶不仅让她净身出户，还逼...",
+       "url": "https://fanqienovel.com/page/7368724194399357977",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "六零年代的重组家庭",
+       "author": null,
+       "intro": "【年代】【六零】【微群像】【穿书】【空间】【爽文】【家长里短】【不下乡】程英发现自己穿进一本年代文里...",
+       "url": "https://fanqienovel.com/page/7565775836092058649",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "村女张玉梅",
+       "author": null,
+       "intro": "20岁的村女张玉梅相亲前一晚，失身于涛子，男友涛子拿着她的钱前去莞城创业，半月后，玉梅逃婚，前去城里...",
+       "url": "https://fanqienovel.com/page/7641050677258488856",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "女频·年代·新书榜",
@@ -2526,8 +3199,89 @@
     },
     {
      "name": "女频·豪门总裁·阅读榜",
-     "books": [],
-     "error": "HTTPError('404 Client Error: Not Found for url: https://fanqienovel.com/page/')"
+     "books": [
+      {
+       "rank": 1,
+       "title": "温夜潮湿",
+       "author": null,
+       "intro": "【心机男主诱骗女宝一晌贪欢的故事】【双洁+甜宠+一见钟情强制爱+上位者当狗又挣又抢】【娇软好欺乖乖女...",
+       "url": "https://fanqienovel.com/page/7654742513151921177",
+       "core": null
+      },
+      {
+       "rank": 2,
+       "title": "惊！阴鸷太子爷的炮灰老婆重生了",
+       "author": null,
+       "intro": "［娇纵貌美小作精×阴鸷腹黑太子爷］【豪门｜甜宠｜双洁｜1v1｜先婚后爱】闻厘车祸身亡，重生后才发现自...",
+       "url": "https://fanqienovel.com/page/7661066068244302873",
+       "core": null
+      },
+      {
+       "rank": 3,
+       "title": "别嫁他！未来女儿托梦求换爹",
+       "author": null,
+       "intro": "【渣男追妻火葬场+拽哥上位+先婚后爱+狼兔甜CP】【男主痞狠骚又茶+女主软糯但不傻，该跑跑该咬咬】宋...",
+       "url": "https://fanqienovel.com/page/7658500002284588094",
+       "core": null
+      },
+      {
+       "rank": 4,
+       "title": "吾妻小我十二岁",
+       "author": null,
+       "intro": "甜宠· 闻庭桉，三十三岁，风流倜傥，商界出了名的浪子。父亲闻鹤年催促他成家，他每次都以“再玩几年”搪...",
+       "url": "https://fanqienovel.com/page/7654169527197912088",
+       "core": null
+      },
+      {
+       "rank": 5,
+       "title": "老实员工和魅魔总裁一夜过后",
+       "author": null,
+       "intro": "老实本分实习生VS顶级魅魔总裁老板1v1双洁 | 六岁年龄差男主：蓄意已久，步步为营，引导型恋人。女...",
+       "url": "https://fanqienovel.com/page/7660590811435781182",
+       "core": null
+      },
+      {
+       "rank": 6,
+       "title": "舔你时你出轨，提离婚你后悔",
+       "author": null,
+       "intro": "一场车祸，她被他的情人撞到流产，她在手术室生死一线，他护着白月光离开医院。南初终于醒悟。今夜，爱他到...",
+       "url": "https://fanqienovel.com/page/7616938527665703998",
+       "core": null
+      },
+      {
+       "rank": 7,
+       "title": "十亿破产闪婚，老公竟是千亿总裁",
+       "author": null,
+       "intro": "闪婚 +先婚后爱+实力护妻童悦家破产了，10亿资产一夜清零。别人咒骂她是“扫把星”，没有男人敢要。机...",
+       "url": "https://fanqienovel.com/page/7583152830500850750",
+       "core": null
+      },
+      {
+       "rank": 8,
+       "title": "跑路失败，被偏执大佬夜夜诱哄",
+       "author": null,
+       "intro": "「撒娇精x斯文败类｜先婚后爱」穿书第一天，阮玉真就知道自己活不过大结局。她穿成冒领男主救命恩情的恶毒...",
+       "url": "https://fanqienovel.com/page/7675413202804411416",
+       "core": null
+      },
+      {
+       "rank": 9,
+       "title": "京心难撩",
+       "author": null,
+       "intro": "【同名漫剧已上线】温叙目标明确：拿下赵家掌权人赵时谨。赵时谨，出身顶层权贵，位高权重，霸道冷硬，是旁...",
+       "url": "https://fanqienovel.com/page/7623714288871427096",
+       "core": null
+      },
+      {
+       "rank": 10,
+       "title": "作精不吸血后，恋爱脑糙汉追着亲",
+       "author": null,
+       "intro": "【何域齐×江圆圆】【出租屋文学+拜金作精+超高精力肌肉硬汉+财阀太子爷当狗+重度恋爱脑】江圆圆觉醒剧...",
+       "url": "https://fanqienovel.com/page/7654827436672044056",
+       "core": null
+      }
+     ],
+     "error": null
     },
     {
      "name": "女频·豪门总裁·新书榜",
@@ -2562,14 +3316,6 @@
        "author": null,
        "intro": "赵惊妤｜京圈清冷高岭大小姐 × 沈砚霆｜沪上权势滔天掌权人京圈人人皆知，赵惊妤矜贵清冷，婚约已定，向...",
        "url": "https://fanqienovel.com/page/7691013714924817470",
-       "core": null
-      },
-      {
-       "rank": 5,
-       "title": "穿成强取豪夺哑巴男主的作精女友",
-       "author": null,
-       "intro": "【作精大小姐×缄默症高岭之花】（久别重逢+女配+克制疯批+高岭之花为爱当三）林听是京圈出了名的作精大...",
-       "url": "https://fanqienovel.com/page/7678746037451770905",
        "core": null
       },
       {
