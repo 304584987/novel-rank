@@ -4,6 +4,6 @@
 ## 配置
 Settings → Secrets and variables → Actions：
 - Secret `AI_API_KEY`（必填才有故事核，默认 DeepSeek）
-- 可选 Variables：`AI_BASE_URL`（默认 https://api.deepseek.com）、`AI_MODEL`（默认 deepseek-chat），任何 OpenAI 兼容接口均可。
+- 可选 Variables：`AI_BASE_URL`（默认 https://api.deepseek.com）、`AI_MODEL`（默认 deepseek-flash），任何 OpenAI 兼容接口均可。
 
 本地：`pip install -r requirements.txt && AI_API_KEY=xxx python scraper/main.py [qidian zongheng ...]`

@@ -1,7 +1,7 @@
 """用 OpenAI 兼容接口为每本书生成故事核；按书缓存在 data/cache.json。无 AI_API_KEY 时跳过。"""
 import os, json, hashlib, requests, time
 BASE=os.environ.get("AI_BASE_URL") or "https://api.deepseek.com"
-MODEL=os.environ.get("AI_MODEL") or "deepseek-chat"
+MODEL=os.environ.get("AI_MODEL") or "deepseek-flash"
 KEY=os.environ.get("AI_API_KEY","")
 PROMPT=("你是网文编辑。根据书名和简介，用一两句话（不超过80字）概括这本小说的“故事核”："
         "核心设定（金手指/世界观/身份）+ 主线冲突。只输出故事核本身。")

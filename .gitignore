@@ -2,3 +2,4 @@ __pycache__/
 app/build/
 app/.dart_tool/
 app/.flutter-plugins*
+__pycache__/

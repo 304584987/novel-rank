@@ -10,6 +10,6 @@ def user(genre, books): return f"题材：{genre}\n榜单作品：\n"+"\n".join(
 d=json.load(open("data/latest.json")); s=d["sites"][0]; g=sys.argv[1] if len(sys.argv)>1 else "玄幻"
 books=[b for l in s["lists"] for b in l["books"] if b.get("genre")==g]
 r=requests.post("https://api.deepseek.com/chat/completions",headers={"Authorization":"Bearer "+os.environ["DEEPSEEK_API_KEY"]},timeout=180,
-  json={"model":"deepseek-chat","temperature":1.0,"response_format":{"type":"json_object"},"messages":[{"role":"system","content":SYS},{"role":"user","content":user(g,books)}]})
+  json={"model":"deepseek-flash","temperature":1.0,"response_format":{"type":"json_object"},"messages":[{"role":"system","content":SYS},{"role":"user","content":user(g,books)}]})
 r.raise_for_status(); ideas=json.loads(r.json()["choices"][0]["message"]["content"])["ideas"]
 print(len(ideas)); print(json.dumps(ideas[0],ensure_ascii=False,indent=1)); print([{k:bool(v) for k,v in i.items()} for i in ideas])

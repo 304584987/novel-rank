@@ -32,14 +32,14 @@ void main() => runApp(MaterialApp(
 // ---------------- 设置 ----------------
 class Settings {
   String baseUrl = 'https://api.deepseek.com';
-  String model = 'deepseek-chat';
+  String model = 'deepseek-flash';
   String apiKey = '';
   String freedom = '中度（推荐）';
   static Future<Settings> load() async {
     final p = await SharedPreferences.getInstance();
     return Settings()
       ..baseUrl = p.getString('baseUrl') ?? 'https://api.deepseek.com'
-      ..model = p.getString('model') ?? 'deepseek-chat'
+      ..model = p.getString('model') ?? 'deepseek-flash'
       ..apiKey = p.getString('apiKey') ?? ''
       ..freedom = p.getString('freedom') ?? '中度（推荐）';
   }
@@ -221,6 +221,8 @@ class _RankPageState extends State<RankPage> {
                 onSelected: (_) => setState(() => genre = x)),
           ]),
         ),
+        if (s != null && genre == null) const Padding(padding: EdgeInsets.fromLTRB(16, 8, 16, 0),
+            child: Text('💡 点上面任意一个题材，右下角会出现「一键生成 3 个写作点子」按钮', style: TextStyle(color: Colors.brown))),
         if (genre != null) ...[
           Padding(padding: const EdgeInsets.all(12),
               child: Text('「$genre」共 ${gBooks.length} 本（已合并本站各榜单去重）', style: const TextStyle(fontWeight: FontWeight.bold))),
@@ -388,7 +390,7 @@ class _SettingsPageState extends State<SettingsPage> {
           const Text('兼容 OpenAI 格式（/chat/completions）的任意模型服务'),
           const SizedBox(height: 12),
           TextField(controller: base, decoration: const InputDecoration(labelText: 'Base URL', hintText: 'https://api.deepseek.com')),
-          TextField(controller: model, decoration: const InputDecoration(labelText: '模型名', hintText: 'deepseek-chat')),
+          TextField(controller: model, decoration: const InputDecoration(labelText: '模型名', hintText: 'deepseek-flash')),
           TextField(controller: key, obscureText: hide, decoration: InputDecoration(labelText: 'API Key',
               suffixIcon: IconButton(icon: Icon(hide ? Icons.visibility : Icons.visibility_off), onPressed: () => setState(() => hide = !hide)))),
           const SizedBox(height: 16),
@@ -401,7 +403,7 @@ class _SettingsPageState extends State<SettingsPage> {
           const SizedBox(height: 24),
           FilledButton(onPressed: () async {
             s!..baseUrl = base.text.trim().isEmpty ? 'https://api.deepseek.com' : base.text.trim()
-              ..model = model.text.trim().isEmpty ? 'deepseek-chat' : model.text.trim()
+              ..model = model.text.trim().isEmpty ? 'deepseek-flash' : model.text.trim()
               ..apiKey = key.text.trim();
             await s!.save();
             if (!mounted) return;
