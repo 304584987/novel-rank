@@ -26,3 +26,6 @@ jobs:
           git add data
           git diff --cached --quiet || git commit -m "data: $(TZ=Asia/Shanghai date +%F)"
           git push
+      - name: 刷新 jsDelivr 缓存
+        run: |
+          curl -s https://purge.jsdelivr.net/gh/304584987/novel-rank@main/data/latest.json || true

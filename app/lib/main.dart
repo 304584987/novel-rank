@@ -5,7 +5,22 @@ import 'package:http/http.dart' as http;
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
 
-const dataUrl = 'https://raw.githubusercontent.com/304584987/novel-rank/main/data/latest.json';
+const dataUrls = [
+  'https://cdn.jsdelivr.net/gh/304584987/novel-rank@main/data/latest.json',
+  'https://fastly.jsdelivr.net/gh/304584987/novel-rank@main/data/latest.json',
+  'https://ghfast.top/https://raw.githubusercontent.com/304584987/novel-rank/main/data/latest.json',
+  'https://raw.githubusercontent.com/304584987/novel-rank/main/data/latest.json',
+];
+
+Future<dynamic> fetchJson(List<String> urls) async {
+  for (final u in urls) {
+    try {
+      final r = await http.get(Uri.parse(u)).timeout(const Duration(seconds: 8));
+      if (r.statusCode == 200) return jsonDecode(utf8.decode(r.bodyBytes));
+    } catch (_) {}
+  }
+  throw 'all';
+}
 const freedomTemps = {'保守': 0.5, '中度（推荐）': 1.0, '大胆': 1.4};
 const elementNames = {
   'protagonist': '① 主角与起点',
@@ -151,10 +166,9 @@ class _RankPageState extends State<RankPage> {
 
   Future<void> load() async {
     try {
-      final r = await http.get(Uri.parse('$dataUrl?t=${DateTime.now().millisecondsSinceEpoch}'));
-      if (r.statusCode != 200) throw 'HTTP ${r.statusCode}';
-      setState(() { data = jsonDecode(utf8.decode(r.bodyBytes)); error = null; });
-    } catch (e) { setState(() => error = '加载失败：$e'); }
+      final d = await fetchJson(dataUrls);
+      setState(() { data = d; error = null; });
+    } catch (e) { setState(() => error = '榜单数据暂时加载不了 😢\n请检查网络（可以试试切换 WiFi / 流量），然后下拉或点重试。'); }
   }
 
   String g(b) => (b['genre'] ?? b['cat'] ?? '其他').toString();
