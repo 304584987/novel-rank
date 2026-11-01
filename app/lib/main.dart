@@ -194,7 +194,13 @@ class _RankPageState extends State<RankPage> {
 
   @override
   Widget build(BuildContext context) {
-    final sites = (data?['sites'] as List?) ?? [];
+    final raw = (data?['sites'] as List?) ?? [];
+    final sites = raw.isEmpty ? [] : [
+      {'name': '全站合并', 'key': 'all', 'lists': [
+        for (final x in raw) for (final l in x['lists'] as List) {...l, 'name': '${x['name']}·${l['name']}'}
+      ]},
+      ...raw,
+    ];
     final s = sites.isEmpty ? null : sites[site.clamp(0, sites.length - 1)];
     final lists = (s?['lists'] as List?) ?? [];
     final counts = <String, int>{};
@@ -239,7 +245,7 @@ class _RankPageState extends State<RankPage> {
             child: Text('💡 点上面任意一个题材，右下角会出现「一键生成 3 个写作点子」按钮', style: TextStyle(color: Colors.brown))),
         if (genre != null) ...[
           Padding(padding: const EdgeInsets.all(12),
-              child: Text('「$genre」共 ${gBooks.length} 本（已合并本站各榜单去重）', style: const TextStyle(fontWeight: FontWeight.bold))),
+              child: Text('「$genre」共 ${gBooks.length} 本（已合并${s?['key'] == 'all' ? '全部网站' : '本站各'}榜单去重）', style: const TextStyle(fontWeight: FontWeight.bold))),
           for (final b in gBooks) bookTile(b, extra: b['_list']),
           const SizedBox(height: 80),
         ] else
