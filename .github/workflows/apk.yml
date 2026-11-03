@@ -14,17 +14,157 @@ jobs:
         with: { distribution: temurin, java-version: "17" }
       - uses: subosito/flutter-action@v2
         with: { channel: stable }
-      - name: 生成平台工程并构建
+
+      - name: 生成平台工程、签名并构建
         working-directory: app
+        env:
+          ANDROID_KEYSTORE_BASE64: ${{ secrets.ANDROID_KEYSTORE_BASE64 }}
+          ANDROID_KEY_ALIAS: ${{ secrets.ANDROID_KEY_ALIAS }}
+          ANDROID_KEYSTORE_PASSWORD: ${{ secrets.ANDROID_KEYSTORE_PASSWORD }}
+          ANDROID_KEY_PASSWORD: ${{ secrets.ANDROID_KEY_PASSWORD }}
         run: |
+          set -euo pipefail
+          if [ -z "${ANDROID_KEYSTORE_BASE64:-}" ]; then
+            echo "缺少 ANDROID_KEYSTORE_BASE64 secret，无法签名"
+            exit 1
+          fi
+
           flutter create --platforms=android --project-name novel_rank --org com.novelrank .
           sed -i 's#<application#<uses-permission android:name="android.permission.INTERNET"/>\n    <application#' android/app/src/main/AndroidManifest.xml
           sed -i 's#android:label="novel_rank"#android:label="小说榜单"#' android/app/src/main/AndroidManifest.xml
+
+          # keystore 放在 android/app/（file() 相对 app 模块）；key.properties 在 android/
+          echo "$ANDROID_KEYSTORE_BASE64" | base64 -d > android/app/upload-keystore.jks
+          python3 - <<'PY'
+          import os
+          from pathlib import Path
+          Path("android/key.properties").write_text(
+              "storePassword={sp}\nkeyPassword={kp}\nkeyAlias={alias}\nstoreFile=upload-keystore.jks\n".format(
+                  sp=os.environ["ANDROID_KEYSTORE_PASSWORD"],
+                  kp=os.environ["ANDROID_KEY_PASSWORD"],
+                  alias=os.environ["ANDROID_KEY_ALIAS"],
+              )
+          )
+          print("keystore bytes=", Path("android/app/upload-keystore.jks").stat().st_size)
+          PY
+
+          python3 <<'PY'
+          from pathlib import Path
+
+          groovy = Path("android/app/build.gradle")
+          kts = Path("android/app/build.gradle.kts")
+
+          groovy_signing = '''
+          def keystoreProperties = new Properties()
+          def keystorePropertiesFile = rootProject.file("key.properties")
+          if (keystorePropertiesFile.exists()) {
+              keystoreProperties.load(new FileInputStream(keystorePropertiesFile))
+          }
+          '''
+
+          kts_signing_header = '''
+          import java.util.Properties
+          import java.io.FileInputStream
+
+          val keystoreProperties = Properties()
+          val keystorePropertiesFile = rootProject.file("key.properties")
+          if (keystorePropertiesFile.exists()) {
+              keystoreProperties.load(FileInputStream(keystorePropertiesFile))
+          }
+          '''
+
+          if groovy.exists():
+              text = groovy.read_text()
+              if "keystoreProperties" not in text:
+                  text = text.replace("android {", groovy_signing + "\nandroid {", 1)
+              if "signingConfigs {" not in text:
+                  text = text.replace(
+                      "buildTypes {",
+                      '''signingConfigs {
+              release {
+                  keyAlias keystoreProperties["keyAlias"]
+                  keyPassword keystoreProperties["keyPassword"]
+                  storeFile keystoreProperties["storeFile"] ? file(keystoreProperties["storeFile"]) : null
+                  storePassword keystoreProperties["storePassword"]
+              }
+          }
+          buildTypes {''',
+                      1,
+                  )
+              text = text.replace(
+                  "signingConfig signingConfigs.debug",
+                  "signingConfig signingConfigs.release",
+              )
+              text = text.replace(
+                  "signingConfig = signingConfigs.debug",
+                  "signingConfig = signingConfigs.release",
+              )
+              if "signingConfigs.release" not in text:
+                  text = text.replace(
+                      "release {",
+                      "release {\n            signingConfig signingConfigs.release",
+                      1,
+                  )
+              groovy.write_text(text)
+              print("patched", groovy)
+          elif kts.exists():
+              text = kts.read_text()
+              if "keystoreProperties" not in text:
+                  if "android {" in text:
+                      text = text.replace("android {", kts_signing_header + "\nandroid {", 1)
+                  else:
+                      text = kts_signing_header + "\n" + text
+              if 'create("release")' not in text:
+                  block = '''
+              signingConfigs {
+                  create("release") {
+                      keyAlias = keystoreProperties["keyAlias"] as String
+                      keyPassword = keystoreProperties["keyPassword"] as String
+                      storeFile = keystoreProperties["storeFile"]?.let { file(it as String) }
+                      storePassword = keystoreProperties["storePassword"] as String
+                  }
+              }
+          '''
+                  if "buildTypes {" in text:
+                      text = text.replace("buildTypes {", block + "\n    buildTypes {", 1)
+                  else:
+                      raise SystemExit("cannot find buildTypes in build.gradle.kts")
+              text = text.replace(
+                  'signingConfig = signingConfigs.getByName("debug")',
+                  'signingConfig = signingConfigs.getByName("release")',
+              )
+              if 'signingConfigs.getByName("release")' not in text:
+                  text = text.replace(
+                      'getByName("release") {',
+                      'getByName("release") {\n            signingConfig = signingConfigs.getByName("release")',
+                      1,
+                  )
+              kts.write_text(text)
+              print("patched", kts)
+          else:
+              raise SystemExit("no android/app/build.gradle(.kts) found")
+          PY
+
+          echo "===== signing-related snippets ====="
+          grep -n -E 'signingConfig|keystoreProperties|signingConfigs' android/app/build.gradle android/app/build.gradle.kts 2>/dev/null || true
           flutter pub get
           flutter build apk --release
+          APK=build/app/outputs/flutter-apk/app-release.apk
+          ls -la "$APK"
+          CERT=$(unzip -l "$APK" | awk '/META-INF\/.*\.(RSA|DSA|EC)$/{print $4; exit}')
+          if [ -n "${CERT:-}" ]; then
+            echo "cert entry: $CERT"
+            unzip -p "$APK" "$CERT" | keytool -printcert 2>/dev/null | grep -E 'SHA1:|SHA256:|Owner:' || true
+          fi
+
       - uses: softprops/action-gh-release@v2
         with:
           tag_name: apk-${{ github.run_number }}
           name: 小说榜单 APK #${{ github.run_number }}
           files: app/build/app/outputs/flutter-apk/app-release.apk
+          body: |
+            ## 签名说明
+            本版本起 APK 使用固定 release 密钥签名，之后可直接覆盖安装。
+
+            **注意：** 若手机上已安装旧版（debug 签名），请先卸载旧版再装本包；卸载前请记下设置页里的 API Key / 接口地址。从本版本开始，以后更新无需再卸载。
           make_latest: true

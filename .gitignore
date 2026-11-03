@@ -3,3 +3,10 @@ app/build/
 app/.dart_tool/
 app/.flutter-plugins*
 __pycache__/
+
+# Android signing (never commit)
+*.jks
+*.keystore
+app/android/key.properties
+app/android/upload-keystore.jks
+**/key.properties
