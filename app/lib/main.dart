@@ -44,22 +44,94 @@ void main() => runApp(MaterialApp(
     theme: ThemeData(colorSchemeSeed: Colors.orange, useMaterial3: true),
     home: const Shell()));
 
+// ---------------- 模型厂商预设 ----------------
+class ModelChoice {
+  final String id;
+  final String label;
+  const ModelChoice(this.id, this.label);
+}
+
+class VendorPreset {
+  final String id;
+  final String name;
+  final String baseUrl;
+  final String keyHint;
+  final List<ModelChoice> models;
+  final String tip;
+  const VendorPreset({
+    required this.id,
+    required this.name,
+    required this.baseUrl,
+    required this.keyHint,
+    required this.models,
+    required this.tip,
+  });
+}
+
+const vendorPresets = [
+  VendorPreset(
+    id: 'deepseek',
+    name: 'DeepSeek',
+    baseUrl: 'https://api.deepseek.com',
+    keyHint: '在 deepseek.com 开通 API Key',
+    models: [
+      ModelChoice('deepseek-flash', 'DeepSeek Flash（推荐，便宜快）'),
+      ModelChoice('deepseek-v4-pro', 'DeepSeek V4 Pro（更强）'),
+    ],
+    tip: '默认推荐。模型名一般直接填 deepseek-flash 即可。',
+  ),
+  VendorPreset(
+    id: 'doubao',
+    name: '豆包（火山方舟）',
+    baseUrl: 'https://ark.cn-beijing.volces.com/api/v3',
+    keyHint: '在火山方舟控制台开通 API Key',
+    models: [
+      ModelChoice('doubao-seed-2-1-lite-260915', '豆包 Lite（便宜）'),
+      ModelChoice('doubao-seed-2-1-turbo-260628', '豆包 Turbo'),
+      ModelChoice('doubao-seed-2-1-pro-260915', '豆包 Pro'),
+      ModelChoice('doubao-seed-evolving', '豆包 Evolving'),
+      ModelChoice('doubao-seed-character-260628', '豆包 Character（角色向）'),
+    ],
+    tip: '若控制台要求填「推理接入点 ID」，把那个 ID 填到下面的「模型名」里即可（可覆盖预设）。',
+  ),
+  VendorPreset(
+    id: 'custom',
+    name: '自定义',
+    baseUrl: '',
+    keyHint: '任意兼容 OpenAI 格式的 Key',
+    models: [],
+    tip: '自己填接口地址和模型名，例如智谱、千问等。',
+  ),
+];
+
+String detectVendorId(String baseUrl) {
+  final u = baseUrl.toLowerCase();
+  if (u.contains('deepseek.com')) return 'deepseek';
+  if (u.contains('volces.com') || u.contains('ark.cn-beijing')) return 'doubao';
+  return 'custom';
+}
+
 // ---------------- 设置 ----------------
 class Settings {
+  String vendor = 'deepseek';
   String baseUrl = 'https://api.deepseek.com';
   String model = 'deepseek-flash';
   String apiKey = '';
   String freedom = '中度（推荐）';
   static Future<Settings> load() async {
     final p = await SharedPreferences.getInstance();
+    final base = p.getString('baseUrl') ?? 'https://api.deepseek.com';
+    final vendor = p.getString('vendor') ?? detectVendorId(base);
     return Settings()
-      ..baseUrl = p.getString('baseUrl') ?? 'https://api.deepseek.com'
+      ..vendor = vendor
+      ..baseUrl = base
       ..model = p.getString('model') ?? 'deepseek-flash'
       ..apiKey = p.getString('apiKey') ?? ''
       ..freedom = p.getString('freedom') ?? '中度（推荐）';
   }
   Future<void> save() async {
     final p = await SharedPreferences.getInstance();
+    await p.setString('vendor', vendor);
     await p.setString('baseUrl', baseUrl);
     await p.setString('model', model);
     await p.setString('apiKey', apiKey);
@@ -398,40 +470,168 @@ class _SettingsPageState extends State<SettingsPage> {
   Settings? s;
   final base = TextEditingController(), model = TextEditingController(), key = TextEditingController();
   bool hide = true;
+
+  VendorPreset get preset {
+    final id = s?.vendor ?? 'deepseek';
+    return vendorPresets.firstWhere((v) => v.id == id, orElse: () => vendorPresets.first);
+  }
+
+  void applyVendor(String id) {
+    final v = vendorPresets.firstWhere((x) => x.id == id, orElse: () => vendorPresets.first);
+    setState(() {
+      s!.vendor = v.id;
+      if (v.baseUrl.isNotEmpty) {
+        base.text = v.baseUrl;
+        s!.baseUrl = v.baseUrl;
+      }
+      if (v.models.isNotEmpty) {
+        final keep = v.models.any((m) => m.id == model.text.trim());
+        if (!keep) {
+          model.text = v.models.first.id;
+          s!.model = v.models.first.id;
+        }
+      }
+    });
+  }
+
   @override
   void initState() {
     super.initState();
-    Settings.load().then((v) => setState(() { s = v; base.text = v.baseUrl; model.text = v.model; key.text = v.apiKey; }));
+    Settings.load().then((v) => setState(() {
+      s = v;
+      base.text = v.baseUrl;
+      model.text = v.model;
+      key.text = v.apiKey;
+    }));
   }
+
+  @override
+  void dispose() {
+    base.dispose();
+    model.dispose();
+    key.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) => Scaffold(
         appBar: AppBar(title: const Text('设置 · 模型接入')),
-        body: s == null ? const SizedBox() : ListView(padding: const EdgeInsets.all(16), children: [
-          const Text('兼容 OpenAI 格式（/chat/completions）的任意模型服务'),
-          const SizedBox(height: 12),
-          TextField(controller: base, decoration: const InputDecoration(labelText: 'Base URL', hintText: 'https://api.deepseek.com')),
-          TextField(controller: model, decoration: const InputDecoration(labelText: '模型名', hintText: 'deepseek-flash')),
-          TextField(controller: key, obscureText: hide, decoration: InputDecoration(labelText: 'API Key',
-              suffixIcon: IconButton(icon: Icon(hide ? Icons.visibility : Icons.visibility_off), onPressed: () => setState(() => hide = !hide)))),
-          const SizedBox(height: 16),
-          DropdownButtonFormField<String>(
-            initialValue: s!.freedom,
-            decoration: const InputDecoration(labelText: '发挥自由度'),
-            items: [for (final k in freedomTemps.keys) DropdownMenuItem(value: k, child: Text('$k（temperature ${freedomTemps[k]}）'))],
-            onChanged: (v) => s!.freedom = v!,
-          ),
-          const SizedBox(height: 24),
-          FilledButton(onPressed: () async {
-            s!..baseUrl = base.text.trim().isEmpty ? 'https://api.deepseek.com' : base.text.trim()
-              ..model = model.text.trim().isEmpty ? 'deepseek-flash' : model.text.trim()
-              ..apiKey = key.text.trim();
-            await s!.save();
-            if (!mounted) return;
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(content: Text('已保存')));
-            if (widget.standalone) Navigator.pop(context);
-          }, child: const Text('保存')),
-          const SizedBox(height: 8),
-          const Text('Key 仅保存在本机（shared_preferences）。', style: TextStyle(color: Colors.grey, fontSize: 12)),
-        ]),
+        body: s == null
+            ? const SizedBox()
+            : ListView(padding: const EdgeInsets.all(16), children: [
+                const Text('先选厂商，再选模型。也可以自己改接口地址和模型名。', style: TextStyle(fontSize: 14)),
+                const SizedBox(height: 12),
+                const Text('厂商 / 预设', style: TextStyle(fontWeight: FontWeight.w600)),
+                const SizedBox(height: 8),
+                Wrap(spacing: 8, runSpacing: 8, children: [
+                  for (final v in vendorPresets)
+                    ChoiceChip(
+                      label: Text(v.name),
+                      selected: s!.vendor == v.id,
+                      onSelected: (_) => applyVendor(v.id),
+                    ),
+                ]),
+                const SizedBox(height: 8),
+                Text(preset.tip, style: const TextStyle(color: Colors.grey, fontSize: 12)),
+                if (preset.models.isNotEmpty) ...[
+                  const SizedBox(height: 16),
+                  const Text('推荐模型（点一下填入）', style: TextStyle(fontWeight: FontWeight.w600)),
+                  const SizedBox(height: 8),
+                  Wrap(spacing: 8, runSpacing: 8, children: [
+                    for (final m in preset.models)
+                      FilterChip(
+                        label: Text(m.label),
+                        selected: model.text.trim() == m.id,
+                        onSelected: (_) => setState(() {
+                          model.text = m.id;
+                          s!.model = m.id;
+                        }),
+                      ),
+                  ]),
+                ],
+                const SizedBox(height: 16),
+                TextField(
+                  controller: base,
+                  decoration: InputDecoration(
+                    labelText: '接口地址（Base URL）',
+                    hintText: preset.baseUrl.isEmpty ? 'https://...' : preset.baseUrl,
+                    helperText: '一般不用改；选厂商后会自动填好',
+                  ),
+                  onChanged: (t) {
+                    final id = detectVendorId(t);
+                    if (id != s!.vendor && id != 'custom') {
+                      setState(() => s!.vendor = id);
+                    } else if (id == 'custom' && s!.vendor != 'custom' && t.trim().isNotEmpty) {
+                      // 用户手改成未知地址时，切到自定义，但不清模型
+                      setState(() => s!.vendor = 'custom');
+                    }
+                  },
+                ),
+                TextField(
+                  controller: model,
+                  decoration: InputDecoration(
+                    labelText: '模型名',
+                    hintText: preset.models.isNotEmpty ? preset.models.first.id : '模型 ID 或接入点 ID',
+                    helperText: s!.vendor == 'doubao'
+                        ? '豆包也可填火山方舟「推理接入点 ID」'
+                        : '例如 deepseek-flash',
+                  ),
+                ),
+                TextField(
+                  controller: key,
+                  obscureText: hide,
+                  decoration: InputDecoration(
+                    labelText: 'API Key',
+                    hintText: preset.keyHint,
+                    helperText: '密钥只保存在你这台手机里',
+                    suffixIcon: IconButton(
+                      icon: Icon(hide ? Icons.visibility : Icons.visibility_off),
+                      onPressed: () => setState(() => hide = !hide),
+                    ),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                DropdownButtonFormField<String>(
+                  initialValue: s!.freedom,
+                  decoration: const InputDecoration(labelText: '发挥自由度'),
+                  items: [
+                    for (final k in freedomTemps.keys)
+                      DropdownMenuItem(value: k, child: Text('$k（temperature ${freedomTemps[k]}）'))
+                  ],
+                  onChanged: (v) => s!.freedom = v!,
+                ),
+                const SizedBox(height: 24),
+                FilledButton(
+                  onPressed: () async {
+                    final chosen = vendorPresets.firstWhere((x) => x.id == s!.vendor, orElse: () => vendorPresets.first);
+                    final defaultBase = chosen.baseUrl.isNotEmpty ? chosen.baseUrl : 'https://api.deepseek.com';
+                    final defaultModel = chosen.models.isNotEmpty ? chosen.models.first.id : 'deepseek-flash';
+                    final nextBase = base.text.trim().isEmpty ? defaultBase : base.text.trim();
+                    final nextModel = model.text.trim().isEmpty ? defaultModel : model.text.trim();
+                    final detected = detectVendorId(nextBase);
+                    s!
+                      ..baseUrl = nextBase
+                      ..model = nextModel
+                      ..apiKey = key.text.trim()
+                      ..vendor = detected != 'custom' ? detected : 'custom';
+                    base.text = s!.baseUrl;
+                    model.text = s!.model;
+                    await s!.save();
+                    if (!mounted) return;
+                    final saved = vendorPresets.firstWhere((x) => x.id == s!.vendor, orElse: () => vendorPresets.last);
+                    ScaffoldMessenger.of(context).showSnackBar(SnackBar(
+                      content: Text('已保存：${saved.name} · ${s!.model}'),
+                    ));
+                    setState(() {});
+                    if (widget.standalone) Navigator.pop(context);
+                  },
+                  child: const Text('保存'),
+                ),
+                const SizedBox(height: 12),
+                const Text(
+                  '说明：豆包用火山方舟接口；DeepSeek 继续可用。换厂商后记得换对应的 API Key。',
+                  style: TextStyle(color: Colors.grey, fontSize: 12),
+                ),
+              ]),
       );
 }
