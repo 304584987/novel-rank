@@ -33,10 +33,11 @@ const elementNames = {
 
 const ideaSystemPrompt = '你是资深网文策划。根据给出的同题材榜单作品（书名+故事核），提炼当下流行元素，借鉴但绝不照搬（不得沿用原书名、人名、具体设定组合），'
     '原创 3 个新的写作点子。只输出 JSON：{"ideas":[{"title":"","core":"","protagonist":"","goldfinger":"","goal":"","obstacle":"","hook":"","mainline":""}]}。'
-    'core=故事核（必填）：一段话，先明确主角、目标、阻力和故事方向。六要素：protagonist=主角与起点（是谁、什么时代地方、人生节点）；goldfinger=金手指/核心设定；'
-    'goal=目标与动机；obstacle=核心阻力（全书级）；hook=悬念钩子（全书谜团）；mainline=主线走向（一句话）。'
-    '不适用的要素必须返回空字符串""：如纯爽文打怪升级、单元剧推进无全书悬念则 hook 为空；普通人无金手指则 goldfinger 为空；无全书级对手则 obstacle 为空。'
-    '六要素必须与故事核内容一致，不得矛盾。';
+    'core=故事核（必填）：一段话，讲清主角、想要什么、难在哪、故事往哪走。protagonist=主角与起点（必填）；mainline=主线走向（必填，一句话）。'
+    'goldfinger=金手指/核心设定、goal=目标与动机、obstacle=核心阻力、hook=悬念钩子，这四项是可选的：按故事实际需要，可以全有、部分有、或者全都没有，不需要就返回空字符串""。'
+    '绝不要硬塞金手指、系统、异能、重生外挂；现实向、情感向、轻日常、纯爽文单元剧都完全可以没有金手指；没有全书谜团就不写 hook；没有全书级对手就不写 obstacle。'
+    '3 个点子必须彼此差异明显：故事类型与基调不同，且至少 1 个完全没有金手指/超自然设定，各点子包含的可选要素组合也尽量不同。'
+    '所有要素必须与故事核一致，不得矛盾。';
 
 void main() => runApp(MaterialApp(
     title: '小说榜单',
@@ -187,7 +188,18 @@ Future<List<Map<String, dynamic>>> generateIdeas(Settings s, String site, String
   var content = jsonDecode(utf8.decode(r.bodyBytes))['choices'][0]['message']['content'] as String;
   final m = RegExp(r'\{[\s\S]*\}').firstMatch(content); // 兼容带 ```json 包裹的返回
   if (m != null) content = m.group(0)!;
-  final ideas = (jsonDecode(content)['ideas'] as List).cast<Map<String, dynamic>>();
+  final decoded = jsonDecode(content);
+  final rawList = decoded is List ? decoded : ((decoded is Map ? decoded['ideas'] : null) as List? ?? const []);
+  final ideas = <Map<String, dynamic>>[];
+  for (final x in rawList) {
+    if (x is! Map) continue;
+    final m = <String, dynamic>{};
+    x.forEach((k, v) => m['$k'] = v == null ? '' : (v is String ? v.trim() : '$v'));
+    for (final k in ['title', 'core', ...elementNames.keys]) { m.putIfAbsent(k, () => ''); }
+    if ((m['core'] as String).isEmpty && (m['title'] as String).isEmpty) continue;
+    ideas.add(m);
+  }
+  if (ideas.isEmpty) throw '模型没返回可用的点子，请再生成一次';
   final now = DateTime.now().toString().substring(0, 16);
   for (final i in ideas) { i['_site'] = site; i['_genre'] = genre; i['_time'] = now; }
   return ideas;
@@ -470,6 +482,56 @@ class _SettingsPageState extends State<SettingsPage> {
   Settings? s;
   final base = TextEditingController(), model = TextEditingController(), key = TextEditingController();
   bool hide = true;
+  bool testing = false;
+  String? testResult;
+
+  Future<void> testKey() async {
+    final b = base.text.trim().replaceAll(RegExp(r'/+$'), '');
+    final m = model.text.trim();
+    final k = key.text.trim();
+    if (b.isEmpty || m.isEmpty || k.isEmpty) { setState(() => testResult = '❌ 请先把接口地址、模型名、API Key 都填上'); return; }
+    setState(() { testing = true; testResult = '测试中…'; });
+    final sw = Stopwatch()..start();
+    String res;
+    try {
+      final r = await http.post(Uri.parse('$b/chat/completions'),
+          headers: {'Authorization': 'Bearer $k', 'Content-Type': 'application/json'},
+          body: jsonEncode({'model': m, 'max_tokens': 5, 'messages': [{'role': 'user', 'content': '你好'}]}))
+          .timeout(const Duration(seconds: 15));
+      final secs = (sw.elapsedMilliseconds / 1000).toStringAsFixed(1);
+      final body = utf8.decode(r.bodyBytes);
+      if (r.statusCode == 200) {
+        String used = m;
+        try { used = (jsonDecode(body)['model'] ?? m).toString(); } catch (_) {}
+        res = '✅ 可以用（模型：$used，耗时 $secs 秒）';
+      } else {
+        String msg = body;
+        try { final j = jsonDecode(body); msg = (j['error']?['message'] ?? j['message'] ?? body).toString(); } catch (_) {}
+        if (msg.length > 150) msg = '${msg.substring(0, 150)}…';
+        final low = msg.toLowerCase();
+        String why;
+        if (r.statusCode == 402 || low.contains('insufficient') || low.contains('balance') || msg.contains('余额') || low.contains('arrearage')) {
+          why = '账户余额不足，请先充值';
+        } else if (r.statusCode == 401 || r.statusCode == 403) {
+          why = 'Key 不对，或者这个 Key 没有权限';
+        } else if (r.statusCode == 404) {
+          why = '模型名或接口地址不对';
+          if (detectVendorId(b) == 'doubao') why += '（豆包可能要填「推理接入点 ID」，或先在火山方舟控制台开通这个模型）';
+        } else if (r.statusCode == 429) {
+          why = '请求太频繁，或者额度用完了，稍后再试';
+        } else if (r.statusCode == 400 && detectVendorId(b) == 'doubao' && (low.contains('model') || low.contains('endpoint'))) {
+          why = '模型名不对（豆包可能要填「推理接入点 ID」，或先开通这个模型）';
+        } else {
+          why = '服务器返回错误（状态码 ${r.statusCode}）';
+        }
+        res = '❌ $why\n服务器说：$msg';
+      }
+    } catch (e) {
+      res = '❌ 网络连不上或超时（15 秒），请检查网络和接口地址';
+    }
+    if (!mounted) return;
+    setState(() { testing = false; testResult = res; });
+  }
 
   VendorPreset get preset {
     final id = s?.vendor ?? 'deepseek';
@@ -600,7 +662,14 @@ class _SettingsPageState extends State<SettingsPage> {
                   ],
                   onChanged: (v) => s!.freedom = v!,
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 16),
+                OutlinedButton.icon(
+                  onPressed: testing ? null : testKey,
+                  icon: testing ? const SizedBox(width: 16, height: 16, child: CircularProgressIndicator(strokeWidth: 2)) : const Icon(Icons.wifi_tethering),
+                  label: const Text('测试 Key（用上面填的内容，不用先保存）'),
+                ),
+                if (testResult != null) Padding(padding: const EdgeInsets.only(top: 8), child: SelectableText(testResult!)),
+                const SizedBox(height: 16),
                 FilledButton(
                   onPressed: () async {
                     final chosen = vendorPresets.firstWhere((x) => x.id == s!.vendor, orElse: () => vendorPresets.first);
